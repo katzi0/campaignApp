@@ -1,79 +1,17 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">name</th>
-      <th scope="col">language</th>
-      <th scope="col">product</th>
-      <th scope="col">fromName</th>
-      <th scope="col">subject</th>
-      <th scope="col">template</th>
-    </tr>
-
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td><input type="text" class="form-control" [(ngModel)]="templateToSave.name"></td> 
-      <td><input type="text" class="form-control" [(ngModel)]="templateToSave.language"></td> 
-      <td><input type="text" class="form-control" [(ngModel)]="templateToSave.product"></td>  
-      <td><input type="text" class="form-control" [(ngModel)]="templateToSave.fromName"></td> 
-      <td><input type="text" class="form-control" [(ngModel)]="templateToSave.subject"></td>  
-      <td><button type="button" class="btn btn-primary" (click)="showTinyMce=!showTinyMce">showTinyMce</button></td> 
-  </tbody>
-</table>
-<h2>templates list</h2>
-<div>
-    <input
-    type='text'
-    style='padding:8px;margin:15px auto;width:30%;'
-    placeholder='Type to filter the name column...'
-    (keyup)='updateFilter($event)'
-  />
-    <ngx-datatable
-        #table
-        class='material'
-        [columns]="columnsTemplates"
-        [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="'auto'"
-        [limit]="10"
-        [rows]="templates | async"></ngx-datatable>
-    <br><br><br>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-      <th scope="col">language</th>
-      <th scope="col">product</th>
-      <th scope="col">fromName</th>
-      <th scope="col">subject</th>
-      <th scope="col">template</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let template of templates | async;">
-      <td>{{template.name}}</td>
-      <td>{{template.language}}</td>
-      <td>{{template.product}}</td>
-      <td>{{template.fromName}}</td>
-      <td>{{template.subject}}</td>
-      <td>{{template.template}}</td>
-    </tr>
-    </tbody> 
-    </table>
-<button type="button" class="btn btn-primary" (click)="testAddToTemplates()">tesintg</button>
-
-<div *ngIf="showTinyMce">
-  <app-tiny-editor [elementId]="'my-editor'" (onEditorContentChange)="keyupHandlerFunction($event)">
-  </app-tiny-editor>
-</div>
-
-<!-- 
-<div>
-    <ngx-datatable #table
-    class="material ngx-datatable fixed-header"
-      [rows]="templates | async"
-      [columns]="columnsTemplates">
-    </ngx-datatable>
-  </div> -->
+<td>
+    <input type="text" [(ngModel)]="template.name">
+</td>
+<td>{{template.language}}</td>
+<td>{{template.product}}</td>
+<td>{{template.fromName}}</td>
+<td>{{template.subject}}</td>
+<td>{{template.template}}</td>
+<td> 
+    <app-tiny-editor [templateComponent]="template.template"  [elementId]="template.id" (onEditorContentChange)="keyupHandlerFunction($event)">
+    </app-tiny-editor>
+</td>
+<td>
+    <span (click)="templateContextChanged($event)">save</span>
+    <span (click)="templateDeActivate($event)">delete</span>
+    <span>reset</span>
+</td>

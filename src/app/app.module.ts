@@ -6,7 +6,12 @@ import { AppComponent } from './app.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { TemplateTableComponent } from './templates/template.component';
+/*templates components*/
+import { CampaignTemplateComponent } from './templates/campaign-template.component';
+import { AddTemplateComponent } from './templates/add-template.component';
+import { TemplateListComponent } from './templates/template-list.component';
+import { TemplateComponent } from './templates/template.component';
+
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 /* tinyMce */
@@ -23,12 +28,14 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 const appRoutes: Routes = [
-  { path:'template', component: TemplateTableComponent}
+  { path:'template', component: CampaignTemplateComponent}
 ]
 
 @NgModule({
   declarations: [
-    AppComponent,TemplateTableComponent,TinyEditorComponent
+    AppComponent,CampaignTemplateComponent,TinyEditorComponent,
+    AddTemplateComponent,
+    TemplateListComponent,TemplateComponent
   ],
   imports: [
     BrowserModule,

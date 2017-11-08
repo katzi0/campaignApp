@@ -1,0 +1,31 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">name</th>
+        <th scope="col">language</th>
+        <th scope="col">product</th>
+        <th scope="col">fromName</th>
+        <th scope="col">subject</th>
+        <th scope="col">template</th>
+        <th scope="col">save</th>
+      </tr>
+  
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.name"></td> 
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.language"></td> 
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.product"></td>  
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.fromName"></td> 
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.subject"></td>  
+        <td><button type="button" class="btn btn-primary" (click)="showTinyMce=!showTinyMce">showTinyMce</button></td> 
+        <td><button type="button" class="btn btn-primary" (click)="testAddToTemplates()">save</button></td> 
+        
+    </tbody>
+  </table>
+  <div *ngIf="showTinyMce">
+    <app-tiny-editor [elementId]="'my-editor'" (onEditorContentChange)="keyupHandlerFunction($event)">
+    </app-tiny-editor>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="testAddToTemplates()">tesintg</button>

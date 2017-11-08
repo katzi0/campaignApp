@@ -1,0 +1,59 @@
+
+<h2>templates list</h2>
+<div>
+    <!-- <input
+    type='text'
+    style='padding:8px;margin:15px auto;width:30%;'
+    placeholder='Type to filter the name column...'
+    (keyup)='updateFilter($event)'
+  /> -->
+    <!-- <ngx-datatable
+        #table
+        class='material'
+        [columns]="columnsTemplates"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="'auto'"
+        [limit]="10"
+        [rows]="templates | async">
+      </ngx-datatable>
+    <br><br><br> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">language</th>
+      <th scope="col">product</th>
+      <th scope="col">fromName</th>
+      <th scope="col">subject</th>
+      <th scope="col">template</th>
+      <th scope="col">editor</th>
+      <th scope="col">action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let template of templates | async;" 
+    template-component [template]="template" (onTemplateContextEdit)="onTemplateContextEdit($event)"
+    >
+      <!-- <template-component [template]="template"></template-component> -->
+    </tr>
+    </tbody> 
+    </table>
+<button type="button" class="btn btn-primary" (click)="testAddToTemplates()">testing</button>
+<!-- <div>template to save {{ (templateToSave | async)?.name }}</div> -->
+<!-- <div>
+    <ngx-datatable #table
+    class="material ngx-datatable fixed-header" 
+      [rows]="templates | async"
+      
+      [columns]="columnsTemplates" (click)="testRowClick($event)">
+    </ngx-datatable>
+  </div>
+  <div *ngIf="rawClicked">
+    <app-tiny-editor [templateComponent]="template"  
+    [elementId]="template.id" (onEditorContentChange)="keyupHandlerFunction($event)"
+   >
+    </app-tiny-editor>
+  </div> -->
