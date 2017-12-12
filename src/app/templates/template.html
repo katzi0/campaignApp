@@ -1,17 +1,27 @@
+<td>{{index+1}}</td>
 <td>
-    <input type="text" [(ngModel)]="template.name">
-</td>
-<td>{{template.language}}</td>
-<td>{{template.product}}</td>
-<td>{{template.fromName}}</td>
-<td>{{template.subject}}</td>
-<td>{{template.template}}</td>
-<td> 
-    <app-tiny-editor [templateComponent]="template.template"  [elementId]="template.id" (onEditorContentChange)="keyupHandlerFunction($event)">
-    </app-tiny-editor>
+    <input type="text" [(ngModel)]="template.name" class="InputElement" (blur)="templateContextChanged()" >
 </td>
 <td>
-    <span (click)="templateContextChanged($event)">save</span>
-    <span (click)="templateDeActivate($event)">delete</span>
-    <span>reset</span>
+        <input type="text" [(ngModel)]="template.language" class="InputElement" (blur)="templateContextChanged()">
+</td>
+<td>
+        <input type="text" [(ngModel)]="template.product" class="InputElement" (blur)="templateContextChanged()">
+</td>
+<td>
+        <input type="text" [(ngModel)]="template.fromName" class="InputElement" (blur)="templateContextChanged()">
+</td>
+<td>
+        <input type="text" [(ngModel)]="template.uid" class="InputElement" (blur)="templateContextChanged()">
+</td>
+<td>{{template.template.length > 30 ? template.template.substring(0,27) + '...' : template.template }} 
+        <span style="float:right"><ngbd-modal [templateComponent]="template.template"  [elementId]="template.id" (onEditorContentChange)="keyupHandlerFunction($event);">
+        </ngbd-modal></span>
+</td>
+
+<td>
+    <!-- <span (click)="templateContextChanged($event)">save</span> -->
+    <span (click)="templateDeActivate()" [hidden]="!template.isActive" class="disableElement">X disable</span>
+    <span (click)="templateActivate()" [hidden]="template.isActive" class="enableElement">V enable</span>
+    <!-- <span>reset</span> -->
 </td>

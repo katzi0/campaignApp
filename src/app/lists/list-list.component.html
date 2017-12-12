@@ -1,0 +1,16 @@
+<table-header [collectionSize]="collectionSize" (onKeyPressAutoComplete)="onKeyPressAutoComplete($event)" (onNumOfResultsPerPageChange)="onNumOfResultsPerPageChange($event)"></table-header>
+<table class="table table-responsive table-hover">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let colName of listColumns; let i = index;">{{colName.name}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let list of lists | async; let i = index" 
+            list-component [list]="list" [index]='i'
+            (onKeyPressAutoComplete)="onKeyPressAutoComplete($event)"
+            (onTemplateContextEdit)="onTemplateContextEdit($event)"
+            >
+      </tr>
+    </tbody>
+  </table>

@@ -1,59 +1,68 @@
-
-<h2>templates list</h2>
-<div>
-    <!-- <input
-    type='text'
-    style='padding:8px;margin:15px auto;width:30%;'
-    placeholder='Type to filter the name column...'
-    (keyup)='updateFilter($event)'
-  /> -->
-    <!-- <ngx-datatable
-        #table
-        class='material'
-        [columns]="columnsTemplates"
-        [columnMode]="'force'"
-        [headerHeight]="50"
-        [footerHeight]="50"
-        [rowHeight]="'auto'"
-        [limit]="10"
-        [rows]="templates | async">
-      </ngx-datatable>
-    <br><br><br> -->
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">name</th>
-      <th scope="col">language</th>
-      <th scope="col">product</th>
-      <th scope="col">fromName</th>
-      <th scope="col">subject</th>
-      <th scope="col">template</th>
-      <th scope="col">editor</th>
-      <th scope="col">action</th>
-      
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let template of templates | async;" 
-    template-component [template]="template" (onTemplateContextEdit)="onTemplateContextEdit($event)"
-    >
-      <!-- <template-component [template]="template"></template-component> -->
-    </tr>
-    </tbody> 
-    </table>
-<button type="button" class="btn btn-primary" (click)="testAddToTemplates()">testing</button>
-<!-- <div>template to save {{ (templateToSave | async)?.name }}</div> -->
-<!-- <div>
-    <ngx-datatable #table
-    class="material ngx-datatable fixed-header" 
-      [rows]="templates | async"
-      
-      [columns]="columnsTemplates" (click)="testRowClick($event)">
-    </ngx-datatable>
+<div class="container">
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel title="Templates">
+      <ng-template ngbPanelContent>
+        <div class="row">
+          <div class="col-sm-3">
+            <label>
+              <select (change)="onNumOfResultsPerPageChange($event)" [(ngModel)]="numOfResultsPerPageStr" class="custom-select mb-2 mr-sm-2 mb-sm-0"
+                id="inlineFormCustomSelect">
+                <option value=5>5</option>
+                <option value=10>10</option>
+                <option value=20>20</option>
+              </select>
+            </label>
+            results per page
+          </div>
+          <div class="col-sm-3">
+            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input type="checkbox" class="custom-control-input">
+              <span class="custom-control-indicator"></span>
+              <span class="custom-control-description">Remember my preference</span>
+            </label>
+          </div>
+          <div class="col-sm-3">
+            <label>Total {{collectionSize}} results</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-10">
+            <section id="search">
+              <label for="search-input">
+                <i class="fa fa-search" aria-hidden="true"></i>
+                <span class="sr-only">Search</span>
+              </label>
+              <input id="search-input" class="form-control input-lg" placeholder="Search Template" autocomplete="off" spellcheck="false"
+                autocorrect="off" tabindex="1" input type="text" (keyup)='onKeyPressAutoComplete($event)' [(ngModel)]="searchParams">
+            </section>
+          </div>
+        </div>
+        <div class="row">
+          <a class="nav-link active" href="#" (click)="isAddTemplate=!isAddTemplate" routerLink="/template">Add Template</a>
+          <add-template *ngIf="isAddTemplate"></add-template>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <table class="table table-responsive table-hover">
+              <thead>
+                <tr>                  
+                  <th scope="col" *ngFor="let colName of templateColumns">{{colName.name}}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let template of templates | async; let i = index" template-component [template]="template" (onTemplateContextEdit)="onTemplateContextEdit($event)"
+                  [index]='i'>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </ng-template>
+    </ngb-panel>
+  </ngb-accordion>
+  <div class="row justify-content-center">
+    <div class="col-4">
+      <pagination [collectionSize]="collectionSize" (onPageClick)="onPageClick($event)" [searchParams]='searchParams'></pagination>
+    </div>
   </div>
-  <div *ngIf="rawClicked">
-    <app-tiny-editor [templateComponent]="template"  
-    [elementId]="template.id" (onEditorContentChange)="keyupHandlerFunction($event)"
-   >
-    </app-tiny-editor>
-  </div> -->
+</div>

@@ -23,31 +23,55 @@ import { environment } from '../environments/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 
+/*header */
+import { HeaderComponent } from './shared/header/header.component';
+
+/*modal */
+import { NgbdModalComponent } from './shared/modal/modal.component'; //,NgbdModalContent
+
 /*datatable*/
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
+/*pagination*/
+import { PaginationComponent } from './shared/pagination/pagination.component';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ListListComponent } from './lists/list-list.component';
+import { ListComponent } from './lists/list.component';
+import { TableHeaderComponent } from './shared/table/table.header';
+import { AddListComponent } from './lists/add-list.component';
+
+/*list componenets*/
+
+
 
 const appRoutes: Routes = [
-  { path:'template', component: CampaignTemplateComponent}
+  { path:'template', component: CampaignTemplateComponent},
+  {path:'lists',component:ListListComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,CampaignTemplateComponent,TinyEditorComponent,
     AddTemplateComponent,
-    TemplateListComponent,TemplateComponent
+    TemplateListComponent,TemplateComponent,PaginationComponent
+    ,HeaderComponent,NgbdModalComponent,ListListComponent,ListComponent,
+    TableHeaderComponent,AddListComponent
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
-     RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes),
     NgbModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    NgxDatatableModule
-
+    NgxDatatableModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[TinyEditorComponent]
 })
 export class AppModule { }

@@ -1,0 +1,39 @@
+<div class="row">
+        <div class="col-sm-3">
+          <label>
+            <select (change)="NumOfResultsPerPageChange()" [(ngModel)]="numOfResultsPerPageStr" class="custom-select mb-2 mr-sm-2 mb-sm-0"
+              id="inlineFormCustomSelect">
+              <option value=5>5</option>
+              <option value=10>10</option>
+              <option value=20>20</option>
+            </select>
+          </label>
+          results per page
+        </div>
+        <div class="col-sm-3">
+          <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+            <input type="checkbox" class="custom-control-input">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Remember my preference</span>
+          </label>
+        </div>
+        <div class="col-sm-3">
+          <label>Total {{collectionSize}} results</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10">
+          <section id="search">
+            <label for="search-input">
+              <i class="fa fa-search" aria-hidden="true"></i>
+              <span class="sr-only">Search</span>
+            </label>
+            <input id="search-input" class="form-control input-lg" placeholder="Search Template" autocomplete="off" spellcheck="false"
+              autocorrect="off" tabindex="1" input type="text" (keyup)='KeyPressAutoComplete($event)' [(ngModel)]="searchParams">
+          </section>
+        </div>
+      </div>
+      <div class="row">
+        <a class="nav-link active" href="#" (click)="isAddTemplate=!isAddTemplate" routerLink="/lists">Add List</a>
+        <add-list *ngIf="isAddTemplate"></add-list>
+      </div>

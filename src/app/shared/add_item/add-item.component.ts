@@ -1,21 +1,21 @@
-import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, TemplateRef, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { Template } from './template';
 import { AngularFirestore,AngularFirestoreCollection  } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
 import { UUID } from 'angular2-uuid';
 
 /* tinyMce */
-import { TinyEditorComponent} from '../shared/tiny-editor.component';
+import { TinyEditorComponent} from '../tiny-editor.component';
+import { Template } from '../../templates/template';
 
 @Component({
-    selector: 'add-template',
-    templateUrl: './add-template.html',
+    selector: 'add-item',
+    templateUrl: './add-item.html',
     styleUrls: ['style.scss','../release/material.css']
 })
 
-export class AddTemplateComponent implements OnInit {
-    
+export class AddItemComponent implements OnInit {
+    @Input() itemCatagory:string;
       rowsTemplates = [];
       columnsTemplates  = [
         { name: 'name' },
@@ -44,6 +44,6 @@ export class AddTemplateComponent implements OnInit {
     }
     keyupHandlerFunction(e):void{
         this.templateToSave.template = e; //e is the HTML output from your TinyMCE component
-    }
+      }
 
 }

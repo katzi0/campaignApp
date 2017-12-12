@@ -1,0 +1,15 @@
+<td>{{index+1}}</td>
+<td>
+        <input type="text" [(ngModel)]="list.name" class="InputElement">
+</td>
+<td>
+        <input type="text" [(ngModel)]="list.size" class="InputElement">
+</td>
+<td>
+        <input type="text" [(ngModel)]="list.status" class="InputElement">
+</td>
+<td>
+        <button type="button" class="btn btn-outline-primary" (click)="addToTemplates(list)">Save</button>
+        <button type="button" class="btn btn-outline-danger" [hidden]="!list.status" (click)="listDeActivate('1')">Disable</button>
+        <button type="button" class="btn btn-outline-success" [hidden]="list.status" (click)="listDeActivate('0')">Enable</button>
+</td>

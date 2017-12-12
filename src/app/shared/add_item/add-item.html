@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">emails</th>
+        <th scope="col">name</th>
+        <th scope="col">size</th>
+        <th scope="col">status</th>
+        <th scope="col">save</th>
+      </tr>
+  
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.emails"></td> 
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.name"></td> 
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.size"></td>  
+        <td><input type="text" class="form-control" [(ngModel)]="templateToSave.status"></td> 
+        <td><button type="button" class="btn btn-primary" (click)="addToTemplates()">save</button></td> 
+        
+    </tbody>
+  </table>
+ 

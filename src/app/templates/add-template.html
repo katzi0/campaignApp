@@ -20,7 +20,7 @@
         <td><input type="text" class="form-control" [(ngModel)]="templateToSave.fromName"></td> 
         <td><input type="text" class="form-control" [(ngModel)]="templateToSave.subject"></td>  
         <td><button type="button" class="btn btn-primary" (click)="showTinyMce=!showTinyMce">showTinyMce</button></td> 
-        <td><button type="button" class="btn btn-primary" (click)="testAddToTemplates()">save</button></td> 
+        <td><button type="button" class="btn btn-primary" (click)="addToTemplates()">save</button></td> 
         
     </tbody>
   </table>
@@ -28,4 +28,3 @@
     <app-tiny-editor [elementId]="'my-editor'" (onEditorContentChange)="keyupHandlerFunction($event)">
     </app-tiny-editor>
   </div>
-  <button type="button" class="btn btn-primary" (click)="testAddToTemplates()">tesintg</button>

@@ -35,7 +35,7 @@ import { Template } from '../templates/template';
         setup: editor => {
           this.editor = editor;
           // this.editor.setContent('<span>some</span> html');
-          editor.on('keyup', () => {
+          editor.on('blur', () => {
             const content = editor.getContent();
             this.onEditorContentChange.emit(content);
             // console.log("content:"+content);
